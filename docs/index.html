@@ -4,57 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Belisi.IA - Agendamento de Manicure</title>
-    <script src="https://cdn.tailwindcss.com" onerror="console.error('Tailwind CDN failed to load')"></script>
-    <noscript>
-        <style>
-            /* Critical CSS for when JavaScript is disabled or Tailwind fails */
-            * { box-sizing: border-box; }
-            body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-            .min-h-screen { min-height: 100vh; }
-            .bg-gradient-to-br { background: linear-gradient(to bottom right, #fdf2f8, #faf5ff); }
-            .from-pink-50 { background-color: #fdf2f8; }
-            .to-purple-50 { background-color: #faf5ff; }
-            .bg-white { background-color: white; }
-            .shadow-sm { box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-            .max-w-7xl { max-width: 1280px; }
-            .mx-auto { margin-left: auto; margin-right: auto; }
-            .px-4 { padding-left: 1rem; padding-right: 1rem; }
-            .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-            .text-center { text-align: center; }
-            .text-4xl { font-size: 2.25rem; }
-            .font-bold { font-weight: 700; }
-            .text-gray-800 { color: #1f2937; }
-            .mb-4 { margin-bottom: 1rem; }
-            .mb-8 { margin-bottom: 2rem; }
-            .mb-12 { margin-bottom: 3rem; }
-            .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
-            .rounded-xl { border-radius: 0.75rem; }
-            .shadow-lg { box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-            .p-6 { padding: 1.5rem; }
-            .p-8 { padding: 2rem; }
-            .grid { display: grid; }
-            .gap-6 { gap: 1.5rem; }
-            .w-full { width: 100%; }
-            .border { border-width: 1px; }
-            .border-gray-300 { border-color: #d1d5db; }
-            .rounded-lg { border-radius: 0.5rem; }
-            .bg-green-500 { background-color: #10b981; }
-            .text-white { color: white; }
-            .font-semibold { font-weight: 600; }
-            .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-            .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-            @media (min-width: 768px) {
-                .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-                .md\:text-5xl { font-size: 3rem; }
-            }
-            @media (min-width: 1024px) {
-                .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-                .lg\:text-6xl { font-size: 3.75rem; }
-            }
-        </style>
-    </noscript>
     <style>
-        /* Base styles that work without Tailwind */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -72,11 +22,26 @@
             min-height: 100vh;
         }
         
-        /* Ensure content is visible even without Tailwind */
+        .container {
+            min-height: 100vh;
+        }
+        
         header {
             background: white;
             padding: 1rem;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        header a {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #374151;
+            text-decoration: none;
+        }
+        
+        header a:hover {
+            color: #db2777;
         }
         
         main {
@@ -85,66 +50,187 @@
             padding: 2rem 1rem;
         }
         
-        section {
+        .hero {
+            text-align: center;
             margin-bottom: 3rem;
         }
         
-        h1 {
+        .hero h1 {
             font-size: 2.5rem;
             font-weight: bold;
             color: #1f2937;
             margin-bottom: 1rem;
         }
         
-        h2 {
+        .hero p {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            max-width: 42rem;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .hero-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: #374151;
+        }
+        
+        .hero-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .hero-info-item svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        
+        .services-section {
+            margin-bottom: 3rem;
+        }
+        
+        .services-section h2 {
             font-size: 2rem;
             font-weight: bold;
             color: #1f2937;
             margin-bottom: 2rem;
+            text-align: center;
         }
         
-        h3 {
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+            border-color: #fce7f3;
+        }
+        
+        .service-card.selected {
+            border-color: #ec4899;
+            box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+            transform: scale(1.05);
+        }
+        
+        .service-card h3 {
             font-size: 1.25rem;
             font-weight: bold;
             color: #1f2937;
             margin-bottom: 0.5rem;
         }
         
-        p {
-            color: #4b5563;
-            line-height: 1.6;
+        .service-card-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
-        .bg-white {
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #db2777;
+        }
+        
+        .service-duration {
+            font-size: 0.875rem;
+            color: #6b7280;
+            background: #f3f4f6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        
+        .booking-form {
             background: white;
-        }
-        
-        .rounded-xl {
-            border-radius: 0.75rem;
-        }
-        
-        .shadow-lg {
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        }
-        
-        .p-6 {
-            padding: 1.5rem;
-        }
-        
-        .p-8 {
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px rgba(0,0,0,0.1);
             padding: 2rem;
+            max-width: 42rem;
+            margin: 0 auto;
         }
         
-        input, select {
+        .booking-form h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid #d1d5db;
             border-radius: 0.5rem;
             font-size: 1rem;
-            margin-top: 0.5rem;
+            transition: all 0.2s;
         }
         
-        button[type="submit"] {
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ec4899;
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+        
+        .time-slot-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            background: #f3f4f6;
+            color: #374151;
+            transition: all 0.2s;
+        }
+        
+        .time-slot-btn:hover {
+            background: #e5e7eb;
+        }
+        
+        .time-slot-btn.selected {
+            background: #ec4899;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transform: scale(1.05);
+        }
+        
+        .submit-btn {
             width: 100%;
             background: #10b981;
             color: white;
@@ -155,331 +241,201 @@
             cursor: pointer;
             font-size: 1rem;
             margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
         }
         
-        button[type="submit"]:hover {
+        .submit-btn:hover {
             background: #059669;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            transform: scale(1.02);
         }
         
-        button[type="button"] {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            background: #f3f4f6;
-            color: #374151;
+        .submit-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
         }
         
-        button[type="button"]:hover {
-            background: #e5e7eb;
-        }
-        
-        label {
-            display: block;
+        .form-note {
+            margin-top: 1.5rem;
             font-size: 0.875rem;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 0.5rem;
+            color: #6b7280;
+            text-align: center;
         }
         
-        @media (min-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.5rem; }
-            main { padding: 2rem 1.5rem; }
-        }
-        
-        @media (min-width: 1024px) {
-            h1 { font-size: 3.75rem; }
-            main { padding: 2rem 2rem; }
-        }
-        
-        /* Grid fallback */
-        #services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        @media (min-width: 768px) {
-            #services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            #services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        #time-slots {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
+        footer {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
         }
         
         @media (min-width: 640px) {
-            #time-slots {
+            .hero-info {
+                flex-direction: row;
+            }
+            
+            .time-slots {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
         
         @media (min-width: 768px) {
-            #time-slots {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .time-slots {
                 grid-template-columns: repeat(5, 1fr);
             }
+            
+            main {
+                padding: 2rem 1.5rem;
+            }
         }
-        /* Fallback styles in case Tailwind doesn't load */
-        .fallback-container {
-            min-height: 100vh;
-            background: linear-gradient(to bottom right, #fdf2f8, #faf5ff);
-            padding: 20px;
-        }
-        .fallback-header {
-            background: white;
-            padding: 16px;
-            text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .fallback-main {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 32px 16px;
-        }
-        .fallback-hero {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .fallback-hero h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #1f2937;
-            margin-bottom: 16px;
-        }
-        .fallback-hero p {
-            font-size: 1.25rem;
-            color: #4b5563;
-            margin-bottom: 24px;
-            max-width: 42rem;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .fallback-card {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            margin-bottom: 24px;
-        }
-        .fallback-button {
-            width: 100%;
-            background: #10b981;
-            color: white;
-            font-weight: 600;
-            padding: 16px 24px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .fallback-button:hover {
-            background: #059669;
-        }
-        .fallback-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-top: 8px;
+        
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 3.75rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            main {
+                padding: 2rem 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
+    <div class="container">
         <!-- Header -->
-        <header class="bg-white shadow-sm">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                <div class="flex justify-center">
-                    <a 
-                        href="https://wa.me/5511999999999" 
-                        class="text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors"
-                    >
-                        (11) 99999-9999
-                    </a>
-                </div>
-            </div>
+        <header>
+            <a href="https://wa.me/5511999999999">(11) 99999-9999</a>
         </header>
 
         <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main>
             <!-- Hero Section -->
-            <section class="text-center mb-12">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
-                    Suas unhas sempre perfeitas
-                </h1>
-                <p class="text-lg md:text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
-                    Agende seu horário de forma rápida e receba confirmação direto no WhatsApp
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-gray-700">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <section class="hero">
+                <h1>Suas unhas sempre perfeitas</h1>
+                <p>Agende seu horário de forma rápida e receba confirmação direto no WhatsApp</p>
+                <div class="hero-info">
+                    <div class="hero-info-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <span class="font-medium">São Paulo, SP</span>
+                        <span style="font-weight: 500;">São Paulo, SP</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                        </div>
-                        <span class="font-medium">4.9/5</span>
-                        <span class="text-gray-500">(127 avaliações)</span>
+                    <div class="hero-info-item">
+                        <svg fill="currentColor" viewBox="0 0 20 20" style="color: #fbbf24;">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span style="font-weight: 500;">4.9/5</span>
+                        <span style="color: #6b7280;">(127 avaliações)</span>
                     </div>
                 </div>
             </section>
 
             <!-- Services Section -->
-            <section class="mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
-                    Nossos Serviços
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="services-grid">
+            <section class="services-section">
+                <h2>Nossos Serviços</h2>
+                <div class="services-grid" id="services-grid">
                     <!-- Services will be populated by JavaScript -->
                 </div>
             </section>
 
             <!-- Booking Form Section -->
-            <section id="booking-form" class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                <div class="max-w-2xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
-                        Agende seu Horário
-                    </h2>
+            <section class="booking-form" id="booking-form">
+                <h2>Agende seu Horário</h2>
 
-                    <form id="booking-form-element" class="space-y-6">
-                        <!-- Name Field -->
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                Seu Nome
-                            </label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                placeholder="Digite seu nome completo"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all"
-                                required
-                            />
+                <form id="booking-form-element">
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <label for="name">Seu Nome</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Digite seu nome completo"
+                            required
+                        />
+                    </div>
+
+                    <!-- WhatsApp Field -->
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp</label>
+                        <input
+                            type="text"
+                            id="whatsapp"
+                            name="whatsapp"
+                            placeholder="(11) 99999-9999"
+                            maxlength="15"
+                            required
+                        />
+                    </div>
+
+                    <!-- Service Selection -->
+                    <div class="form-group">
+                        <label for="service">Serviço Desejado</label>
+                        <select id="service" name="service" required>
+                            <option value="">Selecione um serviço</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+
+                    <!-- Date Field -->
+                    <div class="form-group">
+                        <label for="date">Data</label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                        />
+                    </div>
+
+                    <!-- Time Selection -->
+                    <div class="form-group">
+                        <label>Horário</label>
+                        <div class="time-slots" id="time-slots">
+                            <!-- Time slots will be populated by JavaScript -->
                         </div>
+                    </div>
 
-                        <!-- WhatsApp Field -->
-                        <div>
-                            <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-2">
-                                WhatsApp
-                            </label>
-                            <input
-                                type="text"
-                                id="whatsapp"
-                                name="whatsapp"
-                                placeholder="(11) 99999-9999"
-                                maxlength="15"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all"
-                                required
-                            />
-                        </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        Confirmar Agendamento via WhatsApp
+                    </button>
+                </form>
 
-                        <!-- Service Selection -->
-                        <div>
-                            <label for="service" class="block text-sm font-medium text-gray-700 mb-2">
-                                Serviço Desejado
-                            </label>
-                            <select
-                                id="service"
-                                name="service"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all bg-white"
-                                required
-                            >
-                                <option value="">Selecione um serviço</option>
-                                <!-- Options will be populated by JavaScript -->
-                            </select>
-                        </div>
-
-                        <!-- Date Field -->
-                        <div>
-                            <label for="date" class="block text-sm font-medium text-gray-700 mb-2">
-                                Data
-                            </label>
-                            <input
-                                type="date"
-                                id="date"
-                                name="date"
-                                min=""
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all"
-                                required
-                            />
-                        </div>
-
-                        <!-- Time Selection -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">
-                                Horário
-                            </label>
-                            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3" id="time-slots">
-                                <!-- Time slots will be populated by JavaScript -->
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <button
-                            type="submit"
-                            class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2"
-                        >
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                            </svg>
-                            Confirmar Agendamento via WhatsApp
-                        </button>
-                    </form>
-
-                    <p class="mt-6 text-sm text-gray-600 text-center">
-                        Você receberá uma mensagem de confirmação no WhatsApp após o agendamento
-                    </p>
-                </div>
+                <p class="form-note">
+                    Você receberá uma mensagem de confirmação no WhatsApp após o agendamento
+                </p>
             </section>
         </main>
 
         <!-- Footer -->
-        <footer class="mt-12 py-6 text-center text-gray-600 text-sm">
+        <footer>
             <p>&copy; 2024 Belisi.IA - Agendamento de Manicure</p>
         </footer>
     </div>
 
     <script>
-        // Wait for Tailwind to load, then initialize
-        function waitForTailwind(callback, maxAttempts = 50) {
-            let attempts = 0
-            const checkTailwind = () => {
-                attempts++
-                // Check if Tailwind utilities are available
-                const testDiv = document.createElement('div')
-                testDiv.className = 'flex'
-                document.body.appendChild(testDiv)
-                const style = window.getComputedStyle(testDiv)
-                const isLoaded = style.display === 'flex' || style.display === '-webkit-flex'
-                document.body.removeChild(testDiv)
-                
-                if (isLoaded || attempts >= maxAttempts) {
-                    callback(isLoaded)
-                } else {
-                    setTimeout(checkTailwind, 100)
-                }
-            }
-            checkTailwind()
-        }
-
         // Services data
         const services = [
             { id: 'manicure', name: 'Manicure Completa', price: 45.00, duration: 60 },
@@ -513,13 +469,13 @@
             const servicesGrid = document.getElementById('services-grid')
             services.forEach(service => {
                 const card = document.createElement('div')
-                card.className = 'bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all cursor-pointer border-2 border-transparent hover:border-pink-200'
+                card.className = 'service-card'
                 card.dataset.serviceId = service.id
                 card.innerHTML = `
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">${service.name}</h3>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-pink-600">R$ ${service.price.toFixed(2)}</span>
-                        ${service.duration > 0 ? `<span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">${service.duration} min</span>` : ''}
+                    <h3>${service.name}</h3>
+                    <div class="service-card-info">
+                        <span class="service-price">R$ ${service.price.toFixed(2)}</span>
+                        ${service.duration > 0 ? `<span class="service-duration">${service.duration} min</span>` : ''}
                     </div>
                 `
                 card.addEventListener('click', () => {
@@ -534,11 +490,11 @@
 
         // Update service cards highlighting
         function updateServiceCards() {
-            document.querySelectorAll('#services-grid > div').forEach(card => {
+            document.querySelectorAll('.service-card').forEach(card => {
                 if (card.dataset.serviceId === selectedService) {
-                    card.className = 'bg-white rounded-xl shadow-xl p-6 transition-all cursor-pointer border-2 border-pink-500 scale-105'
+                    card.classList.add('selected')
                 } else {
-                    card.className = 'bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all cursor-pointer border-2 border-transparent hover:border-pink-200'
+                    card.classList.remove('selected')
                 }
             })
         }
@@ -565,21 +521,17 @@
                 const button = document.createElement('button')
                 button.type = 'button'
                 button.textContent = time
-                button.className = 'px-4 py-2 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200'
+                button.className = 'time-slot-btn'
                 button.addEventListener('click', () => {
                     if (selectedTime === time) {
                         selectedTime = ''
-                        button.className = 'px-4 py-2 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        button.classList.remove('selected')
                     } else {
                         selectedTime = time
-                        // Update all buttons
-                        document.querySelectorAll('#time-slots button').forEach(btn => {
-                            if (btn.textContent === time) {
-                                btn.className = 'px-4 py-2 rounded-lg font-medium transition-all bg-pink-600 text-white shadow-md transform scale-105'
-                            } else {
-                                btn.className = 'px-4 py-2 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }
+                        document.querySelectorAll('.time-slot-btn').forEach(btn => {
+                            btn.classList.remove('selected')
                         })
+                        button.classList.add('selected')
                     }
                 })
                 timeSlotsContainer.appendChild(button)
@@ -633,21 +585,15 @@
             })
         }
 
-        // Initialize everything when DOM is ready and Tailwind is loaded
+        // Initialize everything when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
-            waitForTailwind((tailwindLoaded) => {
-                if (!tailwindLoaded) {
-                    console.warn('Tailwind CSS may not have loaded properly')
-                }
-                initServices()
-                initServiceSelect()
-                initTimeSlots()
-                initDateInput()
-                initWhatsAppInput()
-                initForm()
-            })
+            initServices()
+            initServiceSelect()
+            initTimeSlots()
+            initDateInput()
+            initWhatsAppInput()
+            initForm()
         })
     </script>
 </body>
 </html>
-
