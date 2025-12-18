@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belisi.IA - Agendamento de Manicure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
+        <!-- Header -->
+        <header class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div class="flex justify-center">
+                    <a 
+                        href="https://wa.me/5511999999999" 
+                        class="text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors"
+                    >
+                        (11) 99999-9999
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Hero Section -->
+            <section class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
+                    Suas unhas sempre perfeitas
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
+                    Agende seu horário de forma rápida e receba confirmação direto no WhatsApp
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-gray-700">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span class="font-medium">São Paulo, SP</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <span class="font-medium">4.9/5</span>
+                        <span class="text-gray-500">(127 avaliações)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
+                    Nossos Serviços
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="services-grid">
+                    <!-- Services will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Booking Form Section -->
+            <section id="booking-form" class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                <div class="max-w-2xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
+                        Agende seu Horário
+                    </h2>
+
+                    <form id="booking-form-element" class="space-y-6">
+                        <!-- Name Field -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                Seu Nome
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Digite seu nome completo"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all"
+                                required
+                            />
+                        </div>
+
+                        <!-- WhatsApp Field -->
+                        <div>
+                            <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-2">
+                                WhatsApp
+                            </label>
+                            <input
+                                type="text"
+                                id="whatsapp"
+                                name="whatsapp"
+                                placeholder="(11) 99999-9999"
+                                maxlength="15"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all"
+                                required
+                            />
+                        </div>
+
+                        <!-- Service Selection -->
+                        <div>
+                            <label for="service" class="block text-sm font-medium text-gray-700 mb-2">
+                                Serviço Desejado
+                            </label>
+                            <select
+                                id="service"
+                                name="service"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all bg-white"
+                                required
+                            >
+                                <option value="">Selecione um serviço</option>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                        </div>
+
+                        <!-- Date Field -->
+                        <div>
+                            <label for="date" class="block text-sm font-medium text-gray-700 mb-2">
+                                Data
+                            </label>
+                            <input
+                                type="date"
+                                id="date"
+                                name="date"
+                                min=""
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all"
+                                required
+                            />
+                        </div>
+
+                        <!-- Time Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                Horário
+                            </label>
+                            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3" id="time-slots">
+                                <!-- Time slots will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button
+                            type="submit"
+                            class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2"
+                        >
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                            </svg>
+                            Confirmar Agendamento via WhatsApp
+                        </button>
+                    </form>
+
+                    <p class="mt-6 text-sm text-gray-600 text-center">
+                        Você receberá uma mensagem de confirmação no WhatsApp após o agendamento
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 py-6 text-center text-gray-600 text-sm">
+            <p>&copy; 2024 Belisi.IA - Agendamento de Manicure</p>
+        </footer>
+    </div>
+
+    <script>
+        // Services data
+        const services = [
+            { id: 'manicure', name: 'Manicure Completa', price: 45.00, duration: 60 },
+            { id: 'pedicure', name: 'Pedicure Completa', price: 50.00, duration: 60 },
+            { id: 'combo', name: 'Combo Mão e Pé', price: 85.00, duration: 120 },
+            { id: 'gel', name: 'Unha em Gel', price: 80.00, duration: 90 },
+            { id: 'alongamento', name: 'Alongamento', price: 120.00, duration: 120 },
+            { id: 'decoracao', name: 'Decoração Especial', price: 35.00, duration: 0 },
+        ]
+
+        const timeSlots = ['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00']
+
+        // State
+        let selectedService = ''
+        let selectedTime = ''
+
+        // Format WhatsApp number
+        function formatWhatsApp(value) {
+            const digits = value.replace(/\D/g, '')
+            if (digits.length <= 2) {
+                return digits
+            } else if (digits.length <= 7) {
+                return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+            } else {
+                return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`
+            }
+        }
+
+        // Initialize services grid
+        function initServices() {
+            const servicesGrid = document.getElementById('services-grid')
+            services.forEach(service => {
+                const card = document.createElement('div')
+                card.className = 'bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all cursor-pointer border-2 border-transparent hover:border-pink-200'
+                card.dataset.serviceId = service.id
+                card.innerHTML = `
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">${service.name}</h3>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-bold text-pink-600">R$ ${service.price.toFixed(2)}</span>
+                        ${service.duration > 0 ? `<span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">${service.duration} min</span>` : ''}
+                    </div>
+                `
+                card.addEventListener('click', () => {
+                    selectedService = service.id
+                    document.getElementById('service').value = service.id
+                    updateServiceCards()
+                    document.getElementById('booking-form').scrollIntoView({ behavior: 'smooth', block: 'start' })
+                })
+                servicesGrid.appendChild(card)
+            })
+        }
+
+        // Update service cards highlighting
+        function updateServiceCards() {
+            document.querySelectorAll('#services-grid > div').forEach(card => {
+                if (card.dataset.serviceId === selectedService) {
+                    card.className = 'bg-white rounded-xl shadow-xl p-6 transition-all cursor-pointer border-2 border-pink-500 scale-105'
+                } else {
+                    card.className = 'bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all cursor-pointer border-2 border-transparent hover:border-pink-200'
+                }
+            })
+        }
+
+        // Initialize service select
+        function initServiceSelect() {
+            const select = document.getElementById('service')
+            services.forEach(service => {
+                const option = document.createElement('option')
+                option.value = service.id
+                option.textContent = `${service.name} - R$ ${service.price.toFixed(2)}`
+                select.appendChild(option)
+            })
+            select.addEventListener('change', (e) => {
+                selectedService = e.target.value
+                updateServiceCards()
+            })
+        }
+
+        // Initialize time slots
+        function initTimeSlots() {
+            const timeSlotsContainer = document.getElementById('time-slots')
+            timeSlots.forEach(time => {
+                const button = document.createElement('button')
+                button.type = 'button'
+                button.textContent = time
+                button.className = 'px-4 py-2 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200'
+                button.addEventListener('click', () => {
+                    if (selectedTime === time) {
+                        selectedTime = ''
+                        button.className = 'px-4 py-2 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    } else {
+                        selectedTime = time
+                        // Update all buttons
+                        document.querySelectorAll('#time-slots button').forEach(btn => {
+                            if (btn.textContent === time) {
+                                btn.className = 'px-4 py-2 rounded-lg font-medium transition-all bg-pink-600 text-white shadow-md transform scale-105'
+                            } else {
+                                btn.className = 'px-4 py-2 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            }
+                        })
+                    }
+                })
+                timeSlotsContainer.appendChild(button)
+            })
+        }
+
+        // Initialize date input min value
+        function initDateInput() {
+            const dateInput = document.getElementById('date')
+            const today = new Date().toISOString().split('T')[0]
+            dateInput.min = today
+        }
+
+        // WhatsApp input formatting
+        function initWhatsAppInput() {
+            const whatsappInput = document.getElementById('whatsapp')
+            whatsappInput.addEventListener('input', (e) => {
+                e.target.value = formatWhatsApp(e.target.value)
+            })
+        }
+
+        // Form submission
+        function initForm() {
+            const form = document.getElementById('booking-form-element')
+            form.addEventListener('submit', (e) => {
+                e.preventDefault()
+                
+                const formData = {
+                    name: document.getElementById('name').value,
+                    whatsapp: document.getElementById('whatsapp').value,
+                    service: document.getElementById('service').value,
+                    date: document.getElementById('date').value,
+                    time: selectedTime
+                }
+
+                if (!formData.name || !formData.whatsapp || !formData.service || !formData.date || !formData.time) {
+                    alert('Por favor, preencha todos os campos')
+                    return
+                }
+
+                const service = services.find(s => s.id === formData.service)
+                const phoneNumber = formData.whatsapp.replace(/\D/g, '')
+                const message = `Olá! Gostaria de agendar:\n\n` +
+                    `Nome: ${formData.name}\n` +
+                    `Serviço: ${service.name} - R$ ${service.price.toFixed(2)}\n` +
+                    `Data: ${formData.date}\n` +
+                    `Horário: ${formData.time}`
+
+                const whatsappUrl = `https://wa.me/55${phoneNumber}?text=${encodeURIComponent(message)}`
+                window.open(whatsappUrl, '_blank')
+            })
+        }
+
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initServices()
+            initServiceSelect()
+            initTimeSlots()
+            initDateInput()
+            initWhatsAppInput()
+            initForm()
+        })
+    </script>
+</body>
+</html>
+

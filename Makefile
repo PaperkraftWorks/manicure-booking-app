@@ -139,3 +139,10 @@ stop: docker-down ## Quick stop: Stop Docker containers
 
 restart: docker-restart ## Quick restart: Restart Docker containers
 
+##@ GitHub Pages
+
+serve-docs: ## Serve the docs folder locally for testing
+	@echo "Serving docs folder at http://localhost:8000"
+	@echo "Press Ctrl+C to stop"
+	@cd docs && python3 -m http.server 8000 2>/dev/null || python -m SimpleHTTPServer 8000 2>/dev/null || echo "Please install Python to use this command"
+

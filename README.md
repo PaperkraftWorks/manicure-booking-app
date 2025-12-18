@@ -213,6 +213,41 @@ make docker-clean
 make docker-rebuild
 ```
 
+### GitHub Pages Deployment
+
+The project includes a standalone HTML page in the `docs/` folder that can be deployed to GitHub Pages.
+
+#### Automatic Deployment (Recommended)
+
+1. Push your code to GitHub
+2. Go to your repository Settings → Pages
+3. Under "Source", select "GitHub Actions"
+4. The GitHub Actions workflow will automatically deploy the `docs/index.html` file whenever you push to the `main` branch
+
+#### Manual Deployment
+
+1. The standalone HTML file is located at `docs/index.html`
+2. You can open it directly in a browser or serve it locally
+3. To deploy manually:
+   - Go to repository Settings → Pages
+   - Select "Deploy from a branch"
+   - Choose the `main` branch and `/docs` folder
+   - Click Save
+
+#### View the Live Site
+
+After deployment, your site will be available at:
+```
+https://<your-username>.github.io/<repository-name>/
+```
+
+The standalone HTML page includes:
+- All functionality from the React app
+- Tailwind CSS via CDN
+- Vanilla JavaScript (no build step required)
+- Fully responsive design
+- WhatsApp integration
+
 ## Technologies Used
 
 - React 18
@@ -220,4 +255,5 @@ make docker-rebuild
 - Tailwind CSS
 - HTML5
 - JavaScript (ES6+)
+- GitHub Pages
 
